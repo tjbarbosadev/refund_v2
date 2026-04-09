@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import { errorHandling } from '@/middlewares/errorHandling';
 import { usersRoutes } from './routes/usersRoutes';
+import { routes } from './routes';
 
 const app = express();
 
@@ -12,7 +13,7 @@ app.get('/health', (req: Request, res: Response) => {
   res.send({ status: 'ok' });
 });
 
-app.use('/users', usersRoutes);
+app.use(routes);
 app.use(errorHandling);
 
 export { app };
