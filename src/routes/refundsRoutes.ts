@@ -6,12 +6,14 @@ import { Router } from 'express';
 const refundsRoutes = Router();
 const refundsController = new RefundsController();
 
-refundsRoutes.use(ensureAuthentication);
-
-refundsRoutes.get('/', refundsController.index);
+refundsRoutes.get(
+  '/',
+  verifyUserAuthorization(['manager']),
+  refundsController.index,
+);
 refundsRoutes.post(
   '/',
-  verifyUserAuthorization(['employee']),
+  // verifyUserAuthorization(['employee']),
   refundsController.create,
 );
 

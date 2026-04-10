@@ -6,7 +6,9 @@ import z from 'zod';
 
 class UsersController {
   async index(req: any, res: any) {
-    res.json({ message: 'List of users' });
+    const users = await prisma.user.findMany({});
+
+    res.json({ users });
   }
 
   async show(req: any, res: any) {
