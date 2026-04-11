@@ -87,6 +87,27 @@ class RefundsController {
       pagination: { page, perPage, totalPages, totalRecords },
     });
   }
+
+  async show(req: Request, res: Response) {
+    const paramsSchema = z.object({
+      id: z.string().uuid({ message: 'Invalid refund ID format.' }),
+    });
+
+    const { id } = paramsSchema.parse(req.params);
+
+    const refund = await prisma.refunds.findUnique({
+      where: { id },
+      include: {
+        user: true,
+      },
+    });
+
+    if (!refund) {
+      return res.status(404).json({ message: 'Refund not found.' });
+    }
+
+    res.json(refund);
+  }
 }
 
 export { RefundsController };
