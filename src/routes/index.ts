@@ -8,7 +8,7 @@ import { uploadsRoutes } from './uploadsRoutes';
 const routes = Router();
 
 routes.use('/sessions', sessionsRoutes);
-routes.use('/users', ensureAuthentication, usersRoutes);
+routes.use('/users', usersRoutes);
 
 // private routes
 routes.use(ensureAuthentication);

@@ -10,11 +10,7 @@ usersRoutes.get(
   verifyUserAuthorization(['manager']),
   usersController.index,
 );
-usersRoutes.post(
-  '/',
-  verifyUserAuthorization(['manager']),
-  usersController.create,
-);
+usersRoutes.post('/', usersController.create);
 usersRoutes.get('/user/:id', usersController.show);
 usersRoutes.put('/user/:id', usersController.update);
 usersRoutes.delete('/user/:id', usersController.delete);
