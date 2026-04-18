@@ -12,12 +12,12 @@ class RefundsController {
       description: z
         .string()
         .trim()
-        .min(1, { message: 'Description is required.' }),
+        .min(1, { message: 'Descrição é obrigatória.' }),
       category: CategoriesEnum,
-      amount: z
-        .number()
-        .positive({ message: 'Amount must be a positive number.' }),
-      filename: z.string().trim().min(20, { message: 'Filename is required.' }),
+      amount: z.number().positive({ message: 'O valor precisa ser positivo.' }),
+      filename: z.string().trim().min(10, {
+        message: 'O nome do arquivo precisa ter pelo menos 10 caracteres.',
+      }),
     });
 
     const { description, category, amount, filename } = bodySchema.parse(
@@ -42,7 +42,7 @@ class RefundsController {
 
   async index(req: Request, res: Response) {
     const querySchema = z.object({
-      name: z.string().trim().min(1).optional(),
+      name: z.string().trim().optional(),
       page: z.coerce.number().optional().default(1),
       perPage: z.coerce.number().optional().default(10),
     });

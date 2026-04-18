@@ -11,9 +11,10 @@ refundsRoutes.get(
   verifyUserAuthorization(['manager']),
   refundsController.index,
 );
+
 refundsRoutes.post(
   '/',
-  // verifyUserAuthorization(['employee']),
+  verifyUserAuthorization(['employee']),
   refundsController.create,
 );
 

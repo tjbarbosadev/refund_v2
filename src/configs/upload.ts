@@ -3,7 +3,7 @@ import path from 'path';
 import crypto from 'crypto';
 
 const TMP_FOLDER = path.resolve(__dirname, '..', '..', 'tmp');
-const UPLOADS_FOLDER = path.resolve(TMP_FOLDER, 'uploads');
+const UPLOADS_FOLDER = path.resolve(__dirname, '..', '..', 'uploads');
 
 const MAX_SIZE = 3;
 const MAX_FILE_SIZE = MAX_SIZE * 1024 * 1024; // 3MB
